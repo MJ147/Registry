@@ -3,11 +3,11 @@ package com.mja;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SingUP {
+public class SingUp {
 
     private Map<User, String> userMap = new HashMap<>();
 
-    public String singUp(String login, String password, String name, String surname, int age) {
+    public String addUser(String login, String password, String name, String surname, int age) {
         String message = verifyLoginAndPassword(login, password);
         if (message.equals("Login and password are correct")) {
             User user = new User(login, password, name, surname, age);
