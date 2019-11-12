@@ -6,10 +6,10 @@ import java.util.Map;
 public class UserBase {
 
     private static UserBase INSTANCE;
-    private Map<User, String> userMap = new HashMap<>();
+    private Map<User, String> userMap;
 
     private UserBase(){
-
+        userMap = new HashMap<>();
     }
 
     public UserBase getinstance() {
@@ -19,5 +19,11 @@ public class UserBase {
         return INSTANCE;
     }
 
+    public Map<User, String> getUserMap() {
+        return userMap;
+    }
 
+    public void setUserMap(Map<User, String> userMap) {
+        this.userMap = userMap;
+    }
 }
