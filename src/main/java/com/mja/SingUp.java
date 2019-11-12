@@ -5,8 +5,6 @@ import java.util.Map;
 
 public class SingUp {
 
-    private Map<User, String> userMap = new HashMap<>();
-
     public String addUser(String login, String password, String name, String surname, int age) {
         String message = verifyLoginAndPassword(login, password);
         if (message.equals("Login and password are correct")) {
