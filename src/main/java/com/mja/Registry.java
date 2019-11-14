@@ -1,8 +1,5 @@
 package com.mja;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class Registry {
 
     private UserBase userBase = UserBase.getInstance();
@@ -14,6 +11,6 @@ public class Registry {
     }
 
     public void printUserBase(){
-        userBase.toString();
+        System.out.println(userBase.toString());
     }
 }
