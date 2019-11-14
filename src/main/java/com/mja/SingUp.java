@@ -31,7 +31,7 @@ public class SingUp {
         if (login.equals(password)) {
             return "Login and password can not be the same";
         }
-        if (password.length() >= 8) {
+        if (password.length() <= 7) {
             return "Password length has to be longer then 7 chars";
         }
         if (password.matches("[A-Z]")) {
