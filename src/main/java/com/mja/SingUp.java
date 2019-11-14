@@ -1,17 +1,18 @@
 package com.mja;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class SingUp {
 
-    private Map<User, String> userMap = new HashMap<>();
+    private UserBase userBase;
+
+    public SingUp(UserBase userBase) {
+        this.userBase = userBase;
+    }
 
     public String addUser(String login, String password, String name, String surname, int age) {
         String message = verifyLoginAndPassword(login, password);
         if (message.equals("Login and password are correct")) {
             User user = new User(login, password, name, surname, age);
-            userMap.put(user, password);
+            userBase.getUserMap().put(user, password);
         }
         return message;
     }
@@ -44,14 +45,10 @@ public class SingUp {
 
     public boolean isUniqueLogin(String login) {
         boolean uniqueLogin = true;
-        if (userMap.containsKey(login)){
+        if (userBase.getUserMap().containsKey(login)) {
             uniqueLogin = false;
         }
         return uniqueLogin;
     }
 
-    @Override
-    public String toString() {
-        return userMap.toString();
-    }
 }
