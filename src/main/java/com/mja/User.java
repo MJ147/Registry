@@ -1,5 +1,7 @@
 package com.mja;
 
+import java.util.StringJoiner;
+
 public class User implements Comparable {
 
     private String login;
@@ -55,5 +57,16 @@ public class User implements Comparable {
     @Override
     public int compareTo(Object o) {
         return 0;
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", User.class.getSimpleName() + "[", "]")
+                .add("login='" + login + "'")
+                .add("password='" + password + "'")
+                .add("name='" + name + "'")
+                .add("surname='" + surname + "'")
+                .add("age=" + age)
+                .toString();
     }
 }
