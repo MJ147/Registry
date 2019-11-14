@@ -2,6 +2,7 @@ package com.mja;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.StringJoiner;
 
 public class UserBase {
 
@@ -12,7 +13,7 @@ public class UserBase {
         userMap = new HashMap<>();
     }
 
-    public UserBase getinstance() {
+    public static UserBase getInstance() {
         if (INSTANCE == null) {
             INSTANCE = new UserBase();
         }
@@ -25,5 +26,12 @@ public class UserBase {
 
     public void setUserMap(Map<User, String> userMap) {
         this.userMap = userMap;
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", UserBase.class.getSimpleName() + "[", "]")
+                .add("userMap=" + userMap)
+                .toString();
     }
 }
