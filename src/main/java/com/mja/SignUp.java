@@ -2,11 +2,11 @@ package com.mja;
 
 import com.mja.model.User;
 
-public class SingUp {
+public class SignUp {
 
     private UserBase userBase;
 
-    public SingUp(UserBase userBase) {
+    public SignUp(UserBase userBase) {
         this.userBase = userBase;
     }
 

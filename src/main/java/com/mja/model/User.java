@@ -12,7 +12,7 @@ public class User implements Comparable {
     private String name;
     private String surname;
     private int age;
-    private boolean isSingIn;
+    private boolean isSignIn;
 
     public User(String login, String password, String name, String surname, int age) {
         this.id = IdGenerator.nextClientId();
@@ -21,7 +21,7 @@ public class User implements Comparable {
         this.name = name;
         this.surname = surname;
         this.age = age;
-        this.isSingIn = false;
+        this.isSignIn = false;
     }
 
     public long getId() {
@@ -60,12 +60,12 @@ public class User implements Comparable {
         this.age = age;
     }
 
-    public boolean isSingIn() {
-        return isSingIn;
+    public boolean isSignIn() {
+        return isSignIn;
     }
 
     public void setLogIn(boolean logIn) {
-        isSingIn = logIn;
+        isSignIn = logIn;
     }
 
     @Override
