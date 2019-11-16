@@ -1,17 +1,20 @@
 package com.mja;
 
-import java.util.HashMap;
-import java.util.Map;
+import com.mja.model.User;
 
 public class SingUp {
 
-    private Map<User, String> userMap = new HashMap<>();
+    private UserBase userBase;
+
+    public SingUp(UserBase userBase) {
+        this.userBase = userBase;
+    }
 
     public String addUser(String login, String password, String name, String surname, int age) {
         String message = verifyLoginAndPassword(login, password);
         if (message.equals("Login and password are correct")) {
             User user = new User(login, password, name, surname, age);
-            userMap.put(user, password);
+            userBase.getUserMap().put(login, user);
         }
         return message;
     }
@@ -21,16 +24,16 @@ public class SingUp {
         if (!isUniqueLogin(login)) {
             return "User name is already exist.";
         }
-        if (login.equals("") || login.equals(null)) {
+        if (login.equals("")) {
             return "User name can not be empty";
         }
-        if (password.equals("") || password.equals(null)) {
+        if (password.equals("")) {
             return "Password can not be empty";
         }
         if (login.equals(password)) {
             return "Login and password can not be the same";
         }
-        if (password.length() >= 8) {
+        if (password.length() <= 7) {
             return "Password length has to be longer then 7 chars";
         }
         if (password.matches("[A-Z]")) {
@@ -44,14 +47,10 @@ public class SingUp {
 
     public boolean isUniqueLogin(String login) {
         boolean uniqueLogin = true;
-        if (userMap.containsKey(login)){
+        if (userBase.getUserMap().containsKey(login)) {
             uniqueLogin = false;
         }
         return uniqueLogin;
     }
 
-    @Override
-    public String toString() {
-        return userMap.toString();
-    }
 }
