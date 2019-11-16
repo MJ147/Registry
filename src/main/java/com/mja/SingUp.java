@@ -1,5 +1,7 @@
 package com.mja;
 
+import com.mja.model.User;
+
 public class SingUp {
 
     private UserBase userBase;
@@ -12,7 +14,7 @@ public class SingUp {
         String message = verifyLoginAndPassword(login, password);
         if (message.equals("Login and password are correct")) {
             User user = new User(login, password, name, surname, age);
-            userBase.getUserMap().put(user, password);
+            userBase.getUserMap().put(login, user);
         }
         return message;
     }
@@ -22,10 +24,10 @@ public class SingUp {
         if (!isUniqueLogin(login)) {
             return "User name is already exist.";
         }
-        if (login.equals("") || login.equals(null)) {
+        if (login.equals("")) {
             return "User name can not be empty";
         }
-        if (password.equals("") || password.equals(null)) {
+        if (password.equals("")) {
             return "Password can not be empty";
         }
         if (login.equals(password)) {
