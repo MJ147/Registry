@@ -1,5 +1,7 @@
 package com.mja;
 
+import com.mja.model.User;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.StringJoiner;
@@ -7,7 +9,7 @@ import java.util.StringJoiner;
 public class UserBase {
 
     private static UserBase INSTANCE;
-    private Map<User, String> userMap;
+    private Map<String, User> userMap;
 
     private UserBase(){
         userMap = new HashMap<>();
@@ -20,18 +22,21 @@ public class UserBase {
         return INSTANCE;
     }
 
-    public Map<User, String> getUserMap() {
+    public Map<String, User> getUserMap() {
         return userMap;
     }
 
-    public void setUserMap(Map<User, String> userMap) {
+    public void setUserMap(Map<String, User> userMap) {
         this.userMap = userMap;
     }
 
     @Override
     public String toString() {
-        return new StringJoiner(", ", UserBase.class.getSimpleName() + "[", "]")
-                .add("userMap=" + userMap)
-                .toString();
+        StringJoiner stringJoiner = new StringJoiner("\n", "User Database:\n", "");
+        for (User user : userMap.values()) {
+            stringJoiner.add(user.toString());
+        }
+        return stringJoiner.toString();
     }
+
 }
