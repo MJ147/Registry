@@ -1,25 +1,31 @@
 package com.mja.model;
 
+import com.mja.utility.IdGenerator;
+
 import java.util.StringJoiner;
 
 public class User implements Comparable {
 
+    private long id;
     private String login;
     private String password;
     private String name;
     private String surname;
     private int age;
+    private boolean isSingIn;
 
     public User(String login, String password, String name, String surname, int age) {
+        this.id = IdGenerator.nextClientId();
         this.login = login;
         this.password = password;
         this.name = name;
         this.surname = surname;
         this.age = age;
+        this.isSingIn = false;
     }
 
-    public String getLogin() {
-        return login;
+    public long getId() {
+        return id;
     }
 
     public String getPassword() {
@@ -52,6 +58,14 @@ public class User implements Comparable {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public boolean isSingIn() {
+        return isSingIn;
+    }
+
+    public void setLogIn(boolean logIn) {
+        isSingIn = logIn;
     }
 
     @Override
