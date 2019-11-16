@@ -1,4 +1,4 @@
-package com.mja;
+package com.mja.service;
 
 public class SignIn {
 }

@@ -1,6 +1,8 @@
 package com.mja;
 
+import com.mja.database.UserBase;
 import com.mja.model.User;
+import com.mja.service.SignUp;
 
 import java.util.Map;
 

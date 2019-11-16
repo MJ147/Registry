@@ -1,4 +1,4 @@
-package com.mja;
+package com.mja.database;
 
 import com.mja.model.User;
 

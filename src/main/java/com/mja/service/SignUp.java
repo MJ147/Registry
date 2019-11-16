@@ -1,5 +1,6 @@
-package com.mja;
+package com.mja.service;
 
+import com.mja.database.UserBase;
 import com.mja.model.User;
 
 public class SignUp {
