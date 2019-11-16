@@ -1,4 +1,4 @@
-package com.mja;
+package com.mja.model;
 
 import java.util.StringJoiner;
 
@@ -61,7 +61,7 @@ public class User implements Comparable {
 
     @Override
     public String toString() {
-        return new StringJoiner(", ", User.class.getSimpleName() + "[", "]")
+        return new StringJoiner(", ","[", "]")
                 .add("login='" + login + "'")
                 .add("password='" + password + "'")
                 .add("name='" + name + "'")
