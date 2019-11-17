@@ -8,26 +8,15 @@ import java.util.StringJoiner;
 
 public class UserBase {
 
-    private static UserBase INSTANCE;
+
     private Map<String, User> userMap;
 
-    private UserBase(){
+    public UserBase(){
         userMap = new HashMap<>();
-    }
-
-    public static UserBase getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new UserBase();
-        }
-        return INSTANCE;
     }
 
     public Map<String, User> getUserMap() {
         return userMap;
-    }
-
-    public void setUserMap(Map<String, User> userMap) {
-        this.userMap = userMap;
     }
 
     @Override
