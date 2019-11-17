@@ -8,8 +8,13 @@ import java.util.Map;
 
 public class Registry {
 
-    private UserBase userBase = UserBase.getInstance();
-    private SignUp signUp = new SignUp(userBase);
+    private UserBase userBase;
+    private SignUp signUp;
+
+    public Registry() {
+        this.userBase = new UserBase();
+        this.signUp = new SignUp(userBase);
+    }
 
     public void signUp(String login, String password, String name, String surname, int age){
         String message = signUp.addUser(login, password, name, surname, age);
