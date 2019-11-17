@@ -10,39 +10,59 @@ public class SignUpTest {
 
     SignUp signUp;
 
+    String correctLoginAndPassword = "Login and password are correct";
+    String notUniqueLogin = "User name is already exist";
+    String emptyLogin = "User name can not be empty";
+    String emptyPassword = "Password can not be empty";
+    String sameLoginAndPassword = "Login and password can not be the same";
+    String toShortPassword = "Password length has to be longer then 7 chars";
+    String noBigLetterInPassword = "Password must has one big letter";
+    String noNumberInPassword = "Password must has one number";
+
     @BeforeEach
     void setUp() {
-        signUp = new SignUp(new UserBase());
+        this.signUp = new SignUp(new UserBase());
     }
 
     @Test
     void correctLoginAndPassword() {
-        Assertions.assertEquals("Login and password are correct", signUp.verifyLoginAndPassword("login","Password1"));
+        Assertions.assertEquals(correctLoginAndPassword, signUp.verifyLoginAndPassword("login","Password1"));
     }
 
     @Test
-    void correctLoginAndPassword() {
-        Assertions.assertEquals("Login and password are correct", signUp.verifyLoginAndPassword("login","Password1"));
+    void notUniqueLogin() {
+        signUp.addUser("User1", "Password1", "name1", "surname1", 18);
+        Assertions.assertEquals(notUniqueLogin, signUp.verifyLoginAndPassword("User1","Password1"));
     }
 
     @Test
-    void correctLoginAndPassword() {
-        Assertions.assertEquals("Login and password are correct", signUp.verifyLoginAndPassword("login","Password1"));
+    void emptyLogin() {
+        Assertions.assertEquals(emptyLogin, signUp.verifyLoginAndPassword("","Password1"));
     }
 
     @Test
-    void correctLoginAndPassword() {
-        Assertions.assertEquals("Login and password are correct", signUp.verifyLoginAndPassword("login","Password1"));
+    void emptyPassword() {
+        Assertions.assertEquals(emptyPassword, signUp.verifyLoginAndPassword("login",""));
     }
 
     @Test
-    void correctLoginAndPassword() {
-        Assertions.assertEquals("Login and password are correct", signUp.verifyLoginAndPassword("login","Password1"));
+    void sameLoginAndPassword() {
+        Assertions.assertEquals(sameLoginAndPassword, signUp.verifyLoginAndPassword("Login222","Login222"));
     }
 
     @Test
-    void correctLoginAndPassword() {
-        Assertions.assertEquals("Login and password are correct", signUp.verifyLoginAndPassword("login","Password1"));
+    void toShortPassword() {
+        Assertions.assertEquals(toShortPassword, signUp.verifyLoginAndPassword("login","Pass1"));
+    }
+
+    @Test
+    void noBigLetterInPassword() {
+        Assertions.assertEquals(noBigLetterInPassword, signUp.verifyLoginAndPassword("login","password1"));
+    }
+
+    @Test
+    void noNumberInPassword() {
+        Assertions.assertEquals(noNumberInPassword, signUp.verifyLoginAndPassword("login","Password"));
     }
 
 }
