@@ -23,7 +23,7 @@ public class SignUp {
     public String verifyLoginAndPassword(String login, String password) {
 
         if (!isUniqueLogin(login)) {
-            return "User name is already exist.";
+            return "User name is already exist";
         }
         if (login.equals("")) {
             return "User name can not be empty";
@@ -37,10 +37,10 @@ public class SignUp {
         if (password.length() <= 7) {
             return "Password length has to be longer then 7 chars";
         }
-        if (password.matches("[A-Z]")) {
+        if (!password.matches(".*[A-Z].*")) {
             return "Password must has one big letter";
         }
-        if (password.matches("/d")) {
+        if (!password.matches(".*\\d.*")) {
             return "Password must has one number";
         }
         return "Login and password are correct";
