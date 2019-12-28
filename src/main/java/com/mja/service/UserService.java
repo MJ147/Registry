@@ -3,11 +3,11 @@ package com.mja.service;
 import com.mja.database.UserBase;
 import com.mja.model.User;
 
-public class SignUp {
+public class UserService {
 
     private UserBase userBase;
 
-    public SignUp(UserBase userBase) {
+    public UserService(UserBase userBase) {
         this.userBase = userBase;
     }
 
@@ -22,7 +22,7 @@ public class SignUp {
 
     public String verifyLoginAndPassword(String login, String password) {
 
-        if (!isUniqueLogin(login)) {
+        if (isLoginInDatabase(login)) {
             return "User name is already exist";
         }
         if (login.equals("")) {
@@ -46,12 +46,31 @@ public class SignUp {
         return "Login and password are correct";
     }
 
-    public boolean isUniqueLogin(String login) {
-        boolean uniqueLogin = true;
+    public boolean isLoginInDatabase(String login) {
+        boolean isLoginInDatabase = false;
         if (userBase.getUserMap().containsKey(login)) {
-            uniqueLogin = false;
+            isLoginInDatabase = true;
         }
-        return uniqueLogin;
+        return isLoginInDatabase;
+    }
+
+    public String loginUser(String login, String password) {
+        if (!isLoginInDatabase(login)) {
+            return "User" + login + "does not exist";
+        }
+        if (!isCorrectPassword(login, password)) {
+            return "Incorrect password";
+        }
+        userBase.getUserMap().get(login).setSignIn(true);
+        return "Login successful";
+    }
+
+    public boolean isCorrectPassword(String login, String password) {
+        boolean isCorrectPassword = false;
+        if (userBase.getUserMap().get(login).getPassword() == password) {
+            isCorrectPassword = true;
+        }
+        return isCorrectPassword;
     }
 
 }
