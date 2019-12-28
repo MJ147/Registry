@@ -1,14 +1,14 @@
 package com.mja;
 
 import com.mja.database.UserBase;
-import com.mja.service.SignUp;
+import com.mja.service.UserService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class SignUpTest {
+public class UserServiceTest {
 
-    SignUp signUp;
+    UserService userService;
 
     String correctLoginAndPassword = "Login and password are correct";
     String notUniqueLogin = "User name is already exist";
@@ -21,48 +21,48 @@ public class SignUpTest {
 
     @BeforeEach
     void setUp() {
-        this.signUp = new SignUp(new UserBase());
+        this.userService = new UserService(new UserBase());
     }
 
     @Test
     void correctLoginAndPassword() {
-        Assertions.assertEquals(correctLoginAndPassword, signUp.verifyLoginAndPassword("login","Password1"));
+        Assertions.assertEquals(correctLoginAndPassword, userService.verifyLoginAndPassword("login","Password1"));
     }
 
     @Test
     void notUniqueLogin() {
-        signUp.addUser("User1", "Password1", "name1", "surname1", 18);
-        Assertions.assertEquals(notUniqueLogin, signUp.verifyLoginAndPassword("User1","Password1"));
+        userService.addUser("User1", "Password1", "name1", "surname1", 18);
+        Assertions.assertEquals(notUniqueLogin, userService.verifyLoginAndPassword("User1","Password1"));
     }
 
     @Test
     void emptyLogin() {
-        Assertions.assertEquals(emptyLogin, signUp.verifyLoginAndPassword("","Password1"));
+        Assertions.assertEquals(emptyLogin, userService.verifyLoginAndPassword("","Password1"));
     }
 
     @Test
     void emptyPassword() {
-        Assertions.assertEquals(emptyPassword, signUp.verifyLoginAndPassword("login",""));
+        Assertions.assertEquals(emptyPassword, userService.verifyLoginAndPassword("login",""));
     }
 
     @Test
     void sameLoginAndPassword() {
-        Assertions.assertEquals(sameLoginAndPassword, signUp.verifyLoginAndPassword("Login222","Login222"));
+        Assertions.assertEquals(sameLoginAndPassword, userService.verifyLoginAndPassword("Login222","Login222"));
     }
 
     @Test
     void toShortPassword() {
-        Assertions.assertEquals(toShortPassword, signUp.verifyLoginAndPassword("login","Pass1"));
+        Assertions.assertEquals(toShortPassword, userService.verifyLoginAndPassword("login","Pass1"));
     }
 
     @Test
     void noBigLetterInPassword() {
-        Assertions.assertEquals(noBigLetterInPassword, signUp.verifyLoginAndPassword("login","password1"));
+        Assertions.assertEquals(noBigLetterInPassword, userService.verifyLoginAndPassword("login","password1"));
     }
 
     @Test
     void noNumberInPassword() {
-        Assertions.assertEquals(noNumberInPassword, signUp.verifyLoginAndPassword("login","Password"));
+        Assertions.assertEquals(noNumberInPassword, userService.verifyLoginAndPassword("login","Password"));
     }
 
 }
