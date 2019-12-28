@@ -64,8 +64,8 @@ public class User implements Comparable {
         return isSignIn;
     }
 
-    public void setLogIn(boolean logIn) {
-        isSignIn = logIn;
+    public void setSignIn(boolean signIn) {
+        isSignIn = signIn;
     }
 
     @Override

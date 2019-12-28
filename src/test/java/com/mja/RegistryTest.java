@@ -32,4 +32,9 @@ class RegistryTest {
         Assertions.assertEquals("Password3", registry.getUserBase().get("User3").getPassword());
     }
 
+    @Test
+    void signInTest() {
+        Assertions.assertEquals("Password3", registry.getUserBase().get("User3").getPassword());
+    }
+
 }
